@@ -490,89 +490,45 @@
 
     /* Адаптивность */
     @media (max-width: 992px) {
-      .hero-title {
-        font-size: 40px;
-      }
-      
-      .ai-container {
-        grid-template-columns: 1fr;
-        gap: 60px;
-      }
-      
-      .section-title {
-        font-size: 32px;
-      }
-      
-      .nav {
-        display: none;
-      }
-      
-      .app-icon-large {
-        width: 100px;
-        height: 100px;
-      }
+      .hero-title { font-size: 40px; }
+      .ai-container { grid-template-columns: 1fr; gap: 60px; }
+      .section-title { font-size: 32px; }
+      .nav { display: none; }
+      .app-icon-large { width: 100px; height: 100px; }
     }
 
     @media (max-width: 768px) {
-      .hero-title {
-        font-size: 32px;
-      }
-      
-      .hero-subtitle {
-        font-size: 18px;
-      }
-      
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .download-title {
-        font-size: 32px;
-      }
-      
-      .ai-content h2 {
-        font-size: 32px;
-      }
-      
-      .app-icon-large {
-        width: 80px;
-        height: 80px;
-      }
-      
-      .download-app-icon {
-        width: 100px;
-        height: 100px;
-      }
+      .hero-title { font-size: 32px; }
+      .hero-subtitle { font-size: 18px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .download-title { font-size: 32px; }
+      .ai-content h2 { font-size: 32px; }
+      .app-icon-large { width: 80px; height: 80px; }
+      .download-app-icon { width: 100px; height: 100px; }
     }
 
-    /* Анимация для кнопки */
+    /* Анимации */
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
-    
-    .pulse {
-      animation: pulse 2s infinite;
-    }
+    .pulse { animation: pulse 2s infinite; }
     
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
-    
-    .float {
-      animation: float 3s ease-in-out infinite;
-    }
+    .float { animation: float 3s ease-in-out infinite; }
   </style>
 </head>
 <body>
-  <!-- Хедер -->
+
   <header class="header">
     <div class="container">
       <div class="header-content">
         <a href="#" class="logo">
-          <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="MAX" class="logo-img">
+          <img src="img/logo.png" alt="MAX" class="logo-img">
           <span>MAX</span>
         </a>
         <nav class="nav">
@@ -585,35 +541,31 @@
     </div>
   </header>
 
-  <!-- Герой-секция -->
   <section class="hero">
     <div class="container">
       <h1 class="hero-title">Максимум возможностей <span>для общения</span></h1>
       <p class="hero-subtitle">Быстрое и лёгкое приложение для общения и решения повседневных задач</p>
       
       <div class="hero-app-icons">
-        <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="MAX" class="app-icon-large float">
-        <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="MAX" class="app-icon-large" style="animation-delay: 0.5s;">
-        <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="MAX" class="app-icon-large" style="animation-delay: 1s;">
+        <img src="img/app1.png" alt="MAX" class="app-icon-large float">
+        <img src="img/app2.png" alt="MAX" class="app-icon-large" style="animation-delay: 0.5s;">
+        <img src="img/app3.png" alt="MAX" class="app-icon-large" style="animation-delay: 1s;">
       </div>
       
       <div class="device-showcase">
-        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="MAX на устройствах">
+        <img src="img/devices.png" alt="MAX на устройствах">
       </div>
     </div>
   </section>
 
-  <!-- Возможности -->
   <section id="features" class="features">
     <div class="container">
       <h2 class="section-title">Что можно делать в MAX</h2>
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon-wrapper">
-            <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="Общение" class="feature-app-icon">
-            <div class="feature-icon-badge">
-              <i class="fas fa-comments"></i>
-            </div>
+            <img src="img/feature-communication.png" alt="Общение" class="feature-app-icon">
+            <div class="feature-icon-badge"><i class="fas fa-comments"></i></div>
           </div>
           <h3 class="feature-title">Общайтесь без ограничений</h3>
           <p class="feature-description">Переписывайтесь, отправляйте аудио- и видеосообщения, выражайте эмоции с анимированными стикерами и легко обменивайтесь даже объемными файлами до 4 ГБ.</p>
@@ -621,10 +573,8 @@
         
         <div class="feature-card">
           <div class="feature-icon-wrapper">
-            <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="Звонки" class="feature-app-icon">
-            <div class="feature-icon-badge">
-              <i class="fas fa-phone-alt"></i>
-            </div>
+            <img src="img/feature-calls.png" alt="Звонки" class="feature-app-icon">
+            <div class="feature-icon-badge"><i class="fas fa-phone-alt"></i></div>
           </div>
           <h3 class="feature-title">Звоните в высоком качестве</h3>
           <p class="feature-description">Оставайтесь на связи даже при слабом сигнале сети. Бесплатно, без ограничений по времени и количеству участников. HD-звонки доступны всегда.</p>
@@ -632,10 +582,8 @@
         
         <div class="feature-card">
           <div class="feature-icon-wrapper">
-            <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="GigaChat" class="feature-app-icon">
-            <div class="feature-icon-badge">
-              <i class="fas fa-robot"></i>
-            </div>
+            <img src="img/feature-gigachat.png" alt="GigaChat" class="feature-app-icon">
+            <div class="feature-icon-badge"><i class="fas fa-robot"></i></div>
           </div>
           <h3 class="feature-title">GigaChat в каждом чате</h3>
           <p class="feature-description">Встроенный ИИ от Сбера поможет сгенерировать текст, создать изображение, расшифровать аудио или ответить на любой вопрос прямо в диалоге.</p>
@@ -643,10 +591,8 @@
         
         <div class="feature-card">
           <div class="feature-icon-wrapper">
-            <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="Безопасность" class="feature-app-icon">
-            <div class="feature-icon-badge">
-              <i class="fas fa-shield-alt"></i>
-            </div>
+            <img src="img/feature-security.png" alt="Безопасность" class="feature-app-icon">
+            <div class="feature-icon-badge"><i class="fas fa-shield-alt"></i></div>
           </div>
           <h3 class="feature-title">Будьте в безопасности</h3>
           <p class="feature-description">Легко управляйте настройками безопасности профиля и общайтесь только с теми, кому доверяете. Сквозное шифрование для всех сообщений.</p>
@@ -654,10 +600,8 @@
         
         <div class="feature-card">
           <div class="feature-icon-wrapper">
-            <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="ЭП" class="feature-app-icon">
-            <div class="feature-icon-badge">
-              <i class="fas fa-file-signature"></i>
-            </div>
+            <img src="img/feature-esign.png" alt="ЭП" class="feature-app-icon">
+            <div class="feature-icon-badge"><i class="fas fa-file-signature"></i></div>
           </div>
           <h3 class="feature-title">Электронная подпись</h3>
           <p class="feature-description">Подписывайте документы через «Госключ» без посещения офисов. Быстро, безопасно и юридически значимо — прямо в приложении.</p>
@@ -665,10 +609,8 @@
         
         <div class="feature-card">
           <div class="feature-icon-wrapper">
-            <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="Переводы" class="feature-app-icon">
-            <div class="feature-icon-badge">
-              <i class="fas fa-money-bill-wave"></i>
-            </div>
+            <img src="img/feature-sbp.png" alt="Переводы" class="feature-app-icon">
+            <div class="feature-icon-badge"><i class="fas fa-money-bill-wave"></i></div>
           </div>
           <h3 class="feature-title">Переводы по СБП</h3>
           <p class="feature-description">Мгновенные переводы между картами любых банков через Систему быстрых платежей. Без комиссии и прямо в приложении.</p>
@@ -677,13 +619,12 @@
     </div>
   </section>
 
-  <!-- Чат-бот -->
   <section id="ai" class="ai-section">
     <div class="container ai-container">
       <div class="ai-visual">
         <div class="ai-chat">
           <div class="chat-header">
-            <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="MAX" class="ai-app-icon">
+            <img src="img/ai-icon.png" alt="MAX" class="ai-app-icon">
             <div>
               <h4 class="ai-app-name">MAX с GigaChat</h4>
               <p class="ai-app-status">онлайн • отвечает сейчас</p>
@@ -712,11 +653,10 @@
     </div>
   </section>
 
-  <!-- Скачивание -->
   <section id="download" class="download-section">
     <div class="container">
       <div class="download-logo-wrapper">
-        <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="MAX" class="download-app-icon pulse">
+        <img src="img/download-icon.png" alt="MAX" class="download-app-icon pulse">
       </div>
       <h2 class="download-title">Скачайте MAX на любое устройство</h2>
       <p class="download-subtitle">Новые функции сделают приложение еще удобнее. Следите за обновлениями</p>
@@ -730,7 +670,6 @@
     </div>
   </section>
 
-  <!-- Футер -->
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
@@ -743,7 +682,6 @@
             <li><a href="#">Контакты</a></li>
           </ul>
         </div>
-        
         <div class="footer-column">
           <h3>Продукт</h3>
           <ul class="footer-links">
@@ -753,7 +691,6 @@
             <li><a href="#">Безопасность</a></li>
           </ul>
         </div>
-        
         <div class="footer-column">
           <h3>Поддержка</h3>
           <ul class="footer-links">
@@ -763,7 +700,6 @@
             <li><a href="#">Статус сервиса</a></li>
           </ul>
         </div>
-        
         <div class="footer-column">
           <h3>Для разработчиков</h3>
           <ul class="footer-links">
@@ -776,35 +712,25 @@
       </div>
       
       <div class="footer-bottom">
-        <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="MAX" class="footer-app-icon">
+        <img src="img/footer-icon.png" alt="MAX" class="footer-app-icon">
         <p>© 2025 MAX. Все права защищены.</p>
-        <p style="margin-top: 0;">Российское программное обеспечение</p>
+        <p>Российское программное обеспечение</p>
         <p style="font-size: 12px; margin-top: 10px;">Это демонстрационный лендинг для образовательных целей</p>
       </div>
     </div>
   </footer>
 
-  <!-- Скрытый звук -->
   <audio id="prankSound" preload="auto">
     <source src="https://99zvuk.com/wp-content/uploads/2024/01/BeW7.mp3" type="audio/mpeg">
   </audio>
-
-  <!-- Font Awesome -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
   <script>
-    // Функция для воспроизведения звука
     function playSound() {
       const audio = document.getElementById('prankSound');
-      
-      // Увеличиваем громкость
       audio.volume = 0.8;
-      
-      // Пытаемся воспроизвести
       audio.play().catch(error => {
         console.log("Автовоспроизведение заблокировано:", error);
-        
-        // Показываем сообщение для пользователя
         const message = document.createElement('div');
         message.style.cssText = `
           position: fixed;
@@ -820,77 +746,38 @@
         `;
         message.textContent = "Кликните в любом месте для активации звука";
         document.body.appendChild(message);
-        
-        // Удаляем сообщение через 3 секунды
-        setTimeout(() => {
-          if (message.parentNode) {
-            message.remove();
-          }
-        }, 3000);
-        
-        // Разблокируем звук при следующем клике
-        const unlockSound = () => {
-          audio.volume = 0.8;
-          audio.play().then(() => {
-            console.log("Звук разблокирован!");
-          }).catch(e => {
-            console.log("Ошибка воспроизведения:", e);
-          });
-          document.removeEventListener('click', unlockSound);
+        setTimeout(() => message.remove(), 3000);
+        const unlock = () => {
+          audio.play().then(() => console.log("Звук разблокирован!")).catch(console.log);
+          document.removeEventListener('click', unlock);
         };
-        
-        document.addEventListener('click', unlockSound);
+        document.addEventListener('click', unlock);
       });
-      
-      // Добавляем визуальную обратную связь
-      const button = event ? event.target.closest('.download-button') : null;
-      if (button) {
-        button.classList.add('pulse');
-        setTimeout(() => {
-          button.classList.remove('pulse');
-        }, 1000);
-      }
     }
-    
-    // Плавная прокрутка
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
+      anchor.addEventListener('click', e => {
         e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 80,
-            behavior: 'smooth'
-          });
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (target) {
+          window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
         }
       });
     });
-    
-    // Предзагрузка звука при загрузке страницы
-    window.addEventListener('load', function() {
-      const audio = document.getElementById('prankSound');
-      audio.volume = 0.8;
-      audio.load();
+
+    window.addEventListener('load', () => {
+      document.getElementById('prankSound').load();
     });
-    
-    // Страховка: клик по всему телу для разблокировки звука
-    document.body.addEventListener('click', function() {
-      const audio = document.getElementById('prankSound');
-      audio.play().then(() => {
-        audio.pause();
-        audio.currentTime = 0;
-      }).catch(() => {});
+
+    document.body.addEventListener('click', () => {
+      const a = document.getElementById('prankSound');
+      a.play().then(() => { a.pause(); a.currentTime = 0; }).catch(() => {});
     }, { once: true });
-    
-    // Добавляем эффект плавающих иконок
-    document.querySelectorAll('.app-icon-large').forEach((icon, index) => {
-      if (index > 0) {
-        icon.style.animationDelay = `${index * 0.3}s`;
-        icon.classList.add('float');
+
+    document.querySelectorAll('.app-icon-large').forEach((el, i) => {
+      if (i > 0) {
+        el.style.animationDelay = `${i * 0.3}s`;
+        el.classList.add('float');
       }
     });
   </script>
