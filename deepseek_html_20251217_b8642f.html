@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MAX — Мессенджер для общения и решения задач</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --max-blue: #0077FF;
+      --max-dark: #001A34;
+      --max-gray: #667585;
+      --max-light: #F5F7FA;
+      --max-border: #E6E9F0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--max-dark);
+      background: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Хедер в стиле MAX */
+    .header {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--max-border);
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--max-dark);
+      font-weight: 700;
+      font-size: 24px;
+    }
+
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 2px solid var(--max-blue);
+      box-shadow: 0 4px 12px rgba(0, 119, 255, 0.2);
+    }
+
+    .nav {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: var(--max-gray);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--max-blue);
+    }
+
+    .nav-button {
+      background: var(--max-blue);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: background 0.2s;
+    }
+
+    .nav-button:hover {
+      background: #0066DD;
+    }
+
+    /* Герой-секция в стиле MAX */
+    .hero {
+      padding: 100px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 500px;
+      background: linear-gradient(135deg, rgba(0, 119, 255, 0.05) 0%, rgba(0, 198, 255, 0.05) 100%);
+      z-index: -1;
+    }
+
+    .hero-title {
+      font-size: 56px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      color: var(--max-dark);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-title span {
+      color: var(--max-blue);
+    }
+
+    .hero-subtitle {
+      font-size: 20px;
+      color: var(--max-gray);
+      margin-bottom: 48px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-app-icons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+    }
+
+    .app-icon-large {
+      width: 120px;
+      height: 120px;
+      border-radius: 24px;
+      object-fit: cover;
+      box-shadow: 0 15px 35px rgba(0, 119, 255, 0.2);
+      border: 4px solid white;
+      transition: transform 0.3s;
+    }
+
+    .app-icon-large:hover {
+      transform: scale(1.05);
+    }
+
+    .device-showcase {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .device-showcase img {
+      width: 100%;
+      height: auto;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0, 119, 255, 0.15);
+    }
+
+    /* Возможности в стиле MAX */
+    .features {
+      padding: 100px 0;
+      background: var(--max-light);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 60px;
+      color: var(--max-dark);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid var(--max-border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 119, 255, 0.1);
+    }
+
+    .feature-icon-wrapper {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .feature-app-icon {
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      object-fit: cover;
+      border: 3px solid var(--max-blue);
+      box-shadow: 0 6px 20px rgba(0, 119, 255, 0.15);
+    }
+
+    .feature-icon-badge {
+      position: absolute;
+      bottom: -8px;
+      right: -8px;
+      width: 36px;
+      height: 36px;
+      background: var(--max-blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      border: 3px solid white;
+    }
+
+    .feature-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--max-dark);
+    }
+
+    .feature-description {
+      color: var(--max-gray);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* Секция скачивания */
+    .download-section {
+      padding: 100px 0;
+      text-align: center;
+      background: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .download-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0, 119, 255, 0.03) 0%, rgba(0, 198, 255, 0.03) 100%);
+      z-index: -1;
+    }
+
+    .download-logo-wrapper {
+      margin-bottom: 30px;
+    }
+
+    .download-app-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 28px;
+      object-fit: cover;
+      box-shadow: 0 20px 40px rgba(0, 119, 255, 0.25);
+      border: 5px solid white;
+      margin: 0 auto;
+    }
+
+    .download-title {
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--max-dark);
+    }
+
+    .download-subtitle {
+      font-size: 18px;
+      color: var(--max-gray);
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .download-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--max-blue);
+      color: white;
+      padding: 18px 40px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 8px 24px rgba(0, 119, 255, 0.25);
+    }
+
+    .download-button:hover {
+      background: #0066DD;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0, 119, 255, 0.35);
+    }
+
+    .download-button:active {
+      transform: translateY(0);
+    }
+
+    /* Секция чат-бота */
+    .ai-section {
+      padding: 100px 0;
+      background: linear-gradient(135deg, #F8FBFF 0%, #F0F8FF 100%);
+    }
+
+    .ai-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .ai-visual {
+      position: relative;
+    }
+
+    .ai-chat {
+      background: white;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--max-border);
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .chat-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--max-border);
+    }
+
+    .ai-app-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      object-fit: cover;
+      border: 3px solid var(--max-blue);
+    }
+
+    .ai-app-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--max-dark);
+      margin: 0;
+    }
+
+    .ai-app-status {
+      font-size: 14px;
+      color: var(--max-gray);
+      margin: 0;
+    }
+
+    .chat-message {
+      background: #F0F8FF;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .ai-content h2 {
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: var(--max-dark);
+    }
+
+    .ai-content p {
+      font-size: 18px;
+      color: var(--max-gray);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    /* Футер в стиле MAX */
+    .footer {
+      background: var(--max-dark);
+      color: white;
+      padding: 60px 0 40px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-column h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: white;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .footer-app-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 14px;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Адаптивность */
+    @media (max-width: 992px) {
+      .hero-title {
+        font-size: 40px;
+      }
+      
+      .ai-container {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+      
+      .section-title {
+        font-size: 32px;
+      }
+      
+      .nav {
+        display: none;
+      }
+      
+      .app-icon-large {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 32px;
+      }
+      
+      .hero-subtitle {
+        font-size: 18px;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .download-title {
+        font-size: 32px;
+      }
+      
+      .ai-content h2 {
+        font-size: 32px;
+      }
+      
+      .app-icon-large {
+        width: 80px;
+        height: 80px;
+      }
+      
+      .download-app-icon {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    /* Анимация для кнопки */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .float {
+      animation: float 3s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <!-- Хедер -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="#" class="logo">
+          <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="MAX" class="logo-img">
+          <span>MAX</span>
+        </a>
+        <nav class="nav">
+          <a href="#features" class="nav-link">Возможности</a>
+          <a href="#ai" class="nav-link">GigaChat</a>
+          <a href="#download" class="nav-link">Скачать</a>
+          <a href="https://developer.max.ru" class="nav-button" target="_blank">Для разработчиков</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Герой-секция -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero-title">Максимум возможностей <span>для общения</span></h1>
+      <p class="hero-subtitle">Быстрое и лёгкое приложение для общения и решения повседневных задач</p>
+      
+      <div class="hero-app-icons">
+        <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="MAX" class="app-icon-large float">
+        <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="MAX" class="app-icon-large" style="animation-delay: 0.5s;">
+        <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="MAX" class="app-icon-large" style="animation-delay: 1s;">
+      </div>
+      
+      <div class="device-showcase">
+        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="MAX на устройствах">
+      </div>
+    </div>
+  </section>
+
+  <!-- Возможности -->
+  <section id="features" class="features">
+    <div class="container">
+      <h2 class="section-title">Что можно делать в MAX</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="Общение" class="feature-app-icon">
+            <div class="feature-icon-badge">
+              <i class="fas fa-comments"></i>
+            </div>
+          </div>
+          <h3 class="feature-title">Общайтесь без ограничений</h3>
+          <p class="feature-description">Переписывайтесь, отправляйте аудио- и видеосообщения, выражайте эмоции с анимированными стикерами и легко обменивайтесь даже объемными файлами до 4 ГБ.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="Звонки" class="feature-app-icon">
+            <div class="feature-icon-badge">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+          </div>
+          <h3 class="feature-title">Звоните в высоком качестве</h3>
+          <p class="feature-description">Оставайтесь на связи даже при слабом сигнале сети. Бесплатно, без ограничений по времени и количеству участников. HD-звонки доступны всегда.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="GigaChat" class="feature-app-icon">
+            <div class="feature-icon-badge">
+              <i class="fas fa-robot"></i>
+            </div>
+          </div>
+          <h3 class="feature-title">GigaChat в каждом чате</h3>
+          <p class="feature-description">Встроенный ИИ от Сбера поможет сгенерировать текст, создать изображение, расшифровать аудио или ответить на любой вопрос прямо в диалоге.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="Безопасность" class="feature-app-icon">
+            <div class="feature-icon-badge">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+          </div>
+          <h3 class="feature-title">Будьте в безопасности</h3>
+          <p class="feature-description">Легко управляйте настройками безопасности профиля и общайтесь только с теми, кому доверяете. Сквозное шифрование для всех сообщений.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="ЭП" class="feature-app-icon">
+            <div class="feature-icon-badge">
+              <i class="fas fa-file-signature"></i>
+            </div>
+          </div>
+          <h3 class="feature-title">Электронная подпись</h3>
+          <p class="feature-description">Подписывайте документы через «Госключ» без посещения офисов. Быстро, безопасно и юридически значимо — прямо в приложении.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="Переводы" class="feature-app-icon">
+            <div class="feature-icon-badge">
+              <i class="fas fa-money-bill-wave"></i>
+            </div>
+          </div>
+          <h3 class="feature-title">Переводы по СБП</h3>
+          <p class="feature-description">Мгновенные переводы между картами любых банков через Систему быстрых платежей. Без комиссии и прямо в приложении.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Чат-бот -->
+  <section id="ai" class="ai-section">
+    <div class="container ai-container">
+      <div class="ai-visual">
+        <div class="ai-chat">
+          <div class="chat-header">
+            <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="MAX" class="ai-app-icon">
+            <div>
+              <h4 class="ai-app-name">MAX с GigaChat</h4>
+              <p class="ai-app-status">онлайн • отвечает сейчас</p>
+            </div>
+          </div>
+          <div class="chat-message">
+            <strong>GigaChat:</strong> Привет! Я ваш ИИ-помощник в MAX. Могу помочь написать текст, создать изображение по описанию, перевести аудио в текст или просто поболтать.
+          </div>
+          <div class="chat-message" style="background: #E6F7FF; margin-left: 20px;">
+            <strong>Вы:</strong> Напиши приветственное письмо для нового клиента
+          </div>
+          <div class="chat-message">
+            <strong>GigaChat:</strong> Конечно! Вот вариант: "Уважаемый [Имя клиента], добрый день! Рады приветствовать вас в..."
+          </div>
+        </div>
+      </div>
+      
+      <div class="ai-content">
+        <h2>GigaChat — интеллектуальный помощник</h2>
+        <p>Бесплатный ИИ от Сбера доступен прямо в ваших чатах. Генерируйте тексты, создавайте изображения по описанию, переводите аудиосообщения в текст и получайте ответы на сложные вопросы.</p>
+        <p>ИИ интегрирован в интерфейс MAX и работает без переключения между приложениями. Просто откройте чат с GigaChat или упомяните его в любом диалоге.</p>
+        <button class="download-button" onclick="playSound()">
+          <i class="fas fa-robot"></i> Попробовать GigaChat
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Скачивание -->
+  <section id="download" class="download-section">
+    <div class="container">
+      <div class="download-logo-wrapper">
+        <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="MAX" class="download-app-icon pulse">
+      </div>
+      <h2 class="download-title">Скачайте MAX на любое устройство</h2>
+      <p class="download-subtitle">Новые функции сделают приложение еще удобнее. Следите за обновлениями</p>
+      <button class="download-button pulse" onclick="playSound()">
+        <i class="fas fa-download"></i> Скачать MAX
+      </button>
+      <div style="margin-top: 40px; color: var(--max-gray); font-size: 14px;">
+        <p>Доступно для iOS, Android, Windows и macOS</p>
+        <p style="margin-top: 8px; font-size: 12px;">MAX предустановлен на новые смартфоны в РФ с сентября 2025 года</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Футер -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>MAX</h3>
+          <ul class="footer-links">
+            <li><a href="#">О компании</a></li>
+            <li><a href="#">Новости</a></li>
+            <li><a href="#">Вакансии</a></li>
+            <li><a href="#">Контакты</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Продукт</h3>
+          <ul class="footer-links">
+            <li><a href="#features">Возможности</a></li>
+            <li><a href="#ai">GigaChat</a></li>
+            <li><a href="#download">Скачать</a></li>
+            <li><a href="#">Безопасность</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Поддержка</h3>
+          <ul class="footer-links">
+            <li><a href="#">Центр помощи</a></li>
+            <li><a href="#">Сообщество</a></li>
+            <li><a href="#">Связь с нами</a></li>
+            <li><a href="#">Статус сервиса</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Для разработчиков</h3>
+          <ul class="footer-links">
+            <li><a href="https://developer.max.ru" target="_blank">Документация API</a></li>
+            <li><a href="#">Bot Platform</a></li>
+            <li><a href="#">Библиотеки</a></li>
+            <li><a href="#">Примеры</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <img src="https://oblkompriroda.volgograd.ru/attention-hunters/photo_2025-09-09_11-19-25.jpg" alt="MAX" class="footer-app-icon">
+        <p>© 2025 MAX. Все права защищены.</p>
+        <p style="margin-top: 0;">Российское программное обеспечение</p>
+        <p style="font-size: 12px; margin-top: 10px;">Это демонстрационный лендинг для образовательных целей</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Скрытый звук -->
+  <audio id="prankSound" preload="auto">
+    <source src="https://99zvuk.com/wp-content/uploads/2024/01/BeW7.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Font Awesome -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+  <script>
+    // Функция для воспроизведения звука
+    function playSound() {
+      const audio = document.getElementById('prankSound');
+      
+      // Увеличиваем громкость
+      audio.volume = 0.8;
+      
+      // Пытаемся воспроизвести
+      audio.play().catch(error => {
+        console.log("Автовоспроизведение заблокировано:", error);
+        
+        // Показываем сообщение для пользователя
+        const message = document.createElement('div');
+        message.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: #0077FF;
+          color: white;
+          padding: 12px 20px;
+          border-radius: 8px;
+          z-index: 10000;
+          font-weight: 500;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        `;
+        message.textContent = "Кликните в любом месте для активации звука";
+        document.body.appendChild(message);
+        
+        // Удаляем сообщение через 3 секунды
+        setTimeout(() => {
+          if (message.parentNode) {
+            message.remove();
+          }
+        }, 3000);
+        
+        // Разблокируем звук при следующем клике
+        const unlockSound = () => {
+          audio.volume = 0.8;
+          audio.play().then(() => {
+            console.log("Звук разблокирован!");
+          }).catch(e => {
+            console.log("Ошибка воспроизведения:", e);
+          });
+          document.removeEventListener('click', unlockSound);
+        };
+        
+        document.addEventListener('click', unlockSound);
+      });
+      
+      // Добавляем визуальную обратную связь
+      const button = event ? event.target.closest('.download-button') : null;
+      if (button) {
+        button.classList.add('pulse');
+        setTimeout(() => {
+          button.classList.remove('pulse');
+        }, 1000);
+      }
+    }
+    
+    // Плавная прокрутка
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Предзагрузка звука при загрузке страницы
+    window.addEventListener('load', function() {
+      const audio = document.getElementById('prankSound');
+      audio.volume = 0.8;
+      audio.load();
+    });
+    
+    // Страховка: клик по всему телу для разблокировки звука
+    document.body.addEventListener('click', function() {
+      const audio = document.getElementById('prankSound');
+      audio.play().then(() => {
+        audio.pause();
+        audio.currentTime = 0;
+      }).catch(() => {});
+    }, { once: true });
+    
+    // Добавляем эффект плавающих иконок
+    document.querySelectorAll('.app-icon-large').forEach((icon, index) => {
+      if (index > 0) {
+        icon.style.animationDelay = `${index * 0.3}s`;
+        icon.classList.add('float');
+      }
+    });
+  </script>
+</body>
+</html>
